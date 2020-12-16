@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>outerHTML</title>
+</head>
+
+<body>
+  <div id="content">
+    <p>This is a <strong>paragraph</strong> with a list following it.</p>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+  </div>
+  <script>
+    const content = document.getElementById('content');
+    console.log(content.outerHTML);
+    /*
+      执行console.log(content.outerHTML)返回如下：
+      <div id="content">
+        <p>This is a <strong>paragraph</strong> with a list following it.</p>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </div>
+    */
+
+    // 使用创建的<p>dsadsadsadasda</p>整体替换以上整个div标签，包括div中的所有子元素
+    content.outerHTML = '<p>dsadsadsadasda</p>';
+    // content.outerHTML = '<p>dsadsadsadasda</p>'等价于
+    var p = document.createElement("p");
+    p.appendChild(document.createTextNode("dsadsadsadasda"));
+    div.parentNode.replaceChild(p, div);
+  </script>
+</body>
+
+</html>
