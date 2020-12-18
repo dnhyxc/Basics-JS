@@ -95,17 +95,17 @@ Function.prototype.myBind = function (ctx, ...args) {
 }
 
 // 测试
-let person = {
+let person3 = {
   name: 'person1',
   say(arg1, arg2) {
     return this.name + ' ' + arg1 + ' ' + arg2
   }
 }
 
-let person2 = {
+let person4 = {
   name: 'person2'
 }
 
-let res1 = person.say.myBind(person2, 77, 78)();
-let res2 = person.say.myBind(person2)(77, 78);
+let res1 = person.say.myBind(person3, 77, 78)();
+let res2 = person.say.myBind(person4)(77, 78);
 console.log(res1, res2);  // person2 77 78 person2 77 78
