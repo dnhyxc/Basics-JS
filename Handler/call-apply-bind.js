@@ -109,3 +109,4 @@ let person4 = {
 let res1 = person.say.myBind(person3, 77, 78)();
 let res2 = person.say.myBind(person4)(77, 78);
 console.log(res1, res2);  // person2 77 78 person2 77 78
+console.log('>>>>>((手动分割线，手写call、apply、bind))>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
