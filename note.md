@@ -1,4 +1,4 @@
-## JavaScript 基础随笔
+## JS API
 
 ### outerHTML
 
@@ -59,6 +59,8 @@ const res = encodeURIComponent(url);
 console.log(res); // http%3A%2F%2Fwww.baidu.com
 ```
 
+## 构造函数相关
+
 ### 构造函数 this
 
 1，构造函数中，this 总是指向新创建出来的实例对象。
@@ -92,3 +94,92 @@ obj.name = 'dnhyxc';
 **注意**：如果被调用的这个构造函数没有显示的 `return` 表达式（仅限于返回对象类型数据的情况）时，则会隐式的返 `this` 对象，也就是 new 创建出来的实例对象。
 
 **说明**：如果使用 return 表达式返回 undefined、null、boolean、number、string 等基本数据类型的时候，则不会替换 new 关键字调用的默认行为，也就是说此时会隐式的返回 new 创建出来的实例对象。而如果用 return 显示的返回 {}、[]、RegExp、Data、Function 时，return 返回的值则会替换 new 调用的默认返回值 this，也就是说会替换 new 新创建出来的实例对象。
+
+## JS 实现千位分隔符
+
+### 实现方式一
+
+1，首先将数字转为字符串数组，在循环整个数组，每三位添加一个分隔逗号，最后再合并成字符串。
+
+2，由于分隔符在顺序上是从后往前添加的：比如 1234567 添加后是 1,234,567 而不是 123,456,7，所以方便起见可以先把数组倒序排列，添加完之后再将顺序倒回来，就是正常顺序了。
+
+3，**注意**：如果数字带小数的话，要把小数部分分开处理。
+
+```js
+function numFormat(num) {
+  // 分隔小数点
+  num = num.toString().split("."); 
+  // 转换成字符数组并且倒序排列
+  var arr = num[0].split("").reverse();
+  var res = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (i % 3 === 0 && i !== 0) {
+      // 添加分隔符
+      res.push(",");
+    }
+    res.push(arr[i]);
+  }
+  // 再次倒序成为正确的顺序
+  res.reverse(); 
+  // 如果有小数的话添加小数部分
+  if (num[1]) { 
+    res = res.join("").concat("." + num[1]);
+  } else {
+    res = res.join("");
+  }
+  return res;
+}
+
+var a = 1234567894532;
+var b = 673439.4542;
+console.log(numFormat(a)); // "1,234,567,894,532"
+console.log(numFormat(b)); // "673,439.4542"
+```
+
+### 实现方式二
+
+1，使用 JS 自带的 API `toLocaleString()`。
+
+```js
+numObj.toLocaleString(locales, options);
+```
+
+> locales：缩写语言代码（BCP 47 language tag，例如：cmn-Hans-CN）的字符串或者这些字符串组成的数组。
+
+> options：包含一些或所有的下面属性的类。`decimal => 用于纯数字格式`，`currency => 用于货币格式`，`percent => 用于百分比格式`，`unit => 用于单位格式`。
+
+> 该方法返回这个数字在特定语言环境下的表示字符串。
+
+2，**注意**：该方法在没有指定区域时，返回时用默认的语言环境和默认选项格式化的字符串，所以不同地区数字格式可能会you'y有一定的差异，因此最好确保使用 locales 参数指定了使用的语言。
+
+3，实现数字插入千位符代码如下：
+
+```js
+const a = 1234567894532;
+const b = 673439.4542;
+
+console.log(a.toLocaleString()); // "1,234,567,894,532"
+console.log(b.toLocaleString()); // "673,439.454"  （小数部分四舍五入了）
+```
+
+### 实现方式三
+
+1，使用 `RegExp 和 replace()` 方法。
+
+```js
+function numFormat(num) {
+  // 先提取整数部分
+  var res = num.toString().replace(/\d+/, function (n) { 
+    return n.replace(/(\d)(?=(\d{3})+$)/g, function ($1) {
+      return $1 + ",";
+    });
+  })
+  return res;
+}
+var a = 1234567894532;
+var b = 673439.4542;
+console.log(numFormat(a)); // "1,234,567,894,532"
+console.log(numFormat(b)); // "673,439.4542"
+```
+
+> 上述代码中，对象或者字面量所匹配的内容会被第二个参数的返回值替换。
