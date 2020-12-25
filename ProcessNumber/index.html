@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Processing numbers</title>
+</head>
+
+<body>
+  <script>
+    const str = '1231131';
+    const res = str.split('');
+    console.log(JSON.stringify(res).slice(1, JSON.stringify(res).length - 1));
+
+    var month = "201910";
+    var newmonth = insertStr(month, 3, ",");
+
+    function insertStr(soure, start, newStr) {
+      return soure.slice(0, start) + newStr + soure.slice(start);
+    }
+    console.log(newmonth);
+
+
+    // 数组的 join() 方法演示
+    const arr1 = ['1', '2', '3', '4'];
+    const arr1Res = arr1.join('');
+    console.log(arr1Res);
+    console.log('>>>>((手动分割线))>>>>>>>>>>>>>>>>>>>>>>>>');
+
+
+    // 给数字插入千位符，方式一：
+    function numFormat(num) {
+      num = num.toString().split("."); // 分隔小数点
+      var arr = num[0].split("").reverse(); // 转换成字符数组并且倒序排列
+      var res = [];
+      for (var i = 0; i < arr.length; i++) {
+        if (i % 3 === 0 && i !== 0) {
+          res.push(","); // 添加分隔符
+        }
+        res.push(arr[i]);
+      }
+      res.reverse(); // 再次倒序成为正确的顺序
+      console.log(res);
+      if (num[1]) { // 如果有小数的话添加小数部分
+        res = res.join("").concat("." + num[1]);
+      } else {
+        res = res.join("");
+      }
+      return res;
+    }
+
+    var a = 1234567894532;
+    var b = 673439.4542;
+    console.log(numFormat(a)); // "1,234,567,894,532"
+    console.log(numFormat(b)); // "673,439.4542"
+    console.log('>>>>((手动分割线))>>>>>>>>>>>>>>>>>>>>>>>>');
+
+    // 给数字插入千位符，方式二：
+    // toLocaleString() 方法返回这个数字在特定语言环境下的表示字符串。
+    var a = 1234567894532;
+    var b = 673439.4542;
+
+    console.log(a.toLocaleString()); // "1,234,567,894,532"
+    console.log(b.toLocaleString()); // "673,439.454"  （小数部分四舍五入了）
+    console.log('>>>>((手动分割线))>>>>>>>>>>>>>>>>>>>>>>>>');
+
+
+    // 给数字插入千位符，方式三：
+    function numFormat(num) {
+      var res = num.toString().replace(/\d+/, function (n) { // 先提取整数部分
+        return n.replace(/(\d)(?=(\d{3})+$)/g, function ($1) {
+          return $1 + ",";
+        });
+      })
+      return res;
+    }
+
+    var a = 1234567894532;
+    var b = 673439.4542;
+    console.log(numFormat(a)); // "1,234,567,894,532"
+    console.log(numFormat(b)); // "673,439.4542"
+    console.log('>>>>((手动分割线))>>>>>>>>>>>>>>>>>>>>>>>>');
+  </script>
+</body>
+
+</html>
