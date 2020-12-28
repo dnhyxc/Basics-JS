@@ -187,3 +187,49 @@ console.log(numFormat(b)); // "673,439.4542"
 ### 上传文件与列表已有文件同时展示
 
 1，处理文件上传文件与原有文件需要同时展示时，需要使用两个互不相干的数组进行展示，即上传文件分为一个数组，已有文件分为一个数组，将这两个数组同时展示在页面上，避免在操作增删改操作时相互影响。
+
+## 数组转对象的方式
+
+### 方式一
+
+1，`对象结构`：
+
+```js
+const arr = ['arr1', 'arr2', 'arr3'];
+
+const obj = {...arr};
+```
+
+### 方式二
+
+1，`for...in 循环`：
+
+```js
+const arr = ['arr1', 'arr2', 'arr3'];
+const obj = {};
+
+for(let k in arr) {
+  obj[k] = arr[k]
+}
+```
+
+### 方式三
+
+1，`Object.assign()`：
+
+```js
+const arr = ['arr1', 'arr2', 'arr3'];
+
+Object.assign({}, arr);
+```
+
+### 方式四
+
+1，`Array.reduce()`：
+
+```js
+arr.reduce((obj, arr, index) => {
+  obj[index] = arr;
+  return obj;
+}, {})
+```
