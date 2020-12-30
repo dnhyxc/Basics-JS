@@ -310,4 +310,4 @@ arr.reduce((obj, arr, index) => {
 
 > 例如：/a{2}/ 不会匹配 'candy' 中的 'a'，但会匹配到 'caandy' 中所有的 a，以及 'caaandy' 中的前两个 'a'。
 
-16，
+16，aaaa
