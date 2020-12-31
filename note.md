@@ -309,5 +309,3 @@ arr.reduce((obj, arr, index) => {
 15，`{n}`：n 是一个正整数，匹配了前面一个字符刚好出现了 'n' 次。
 
 > 例如：/a{2}/ 不会匹配 'candy' 中的 'a'，但会匹配到 'caandy' 中所有的 a，以及 'caaandy' 中的前两个 'a'。
-
-16，aaaa
