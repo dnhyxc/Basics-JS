@@ -76,3 +76,4 @@ function getTime(time = +new Date()) {
 
 const time1 = getTime();
 console.log(time1); // 2021.01.12 14:18:55
+console.log('>>>>((手动分割线))>>>>>>>>>>>>>>>>>>>');
