@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch</title>
+</head>
+
+<body>
+  <button id='fetch'>fetch</button>
+  <script>
+    const fetchBtn = document.getElementById('fetch');
+    async function getRich() {
+      const res = await fetch('https://www.zhihu.com/question/65684023/answer/1615344242');
+      const content = res.text();
+      console.log(content);
+    }
+    fetchBtn.onclick = () => {
+      console.log('发送请求');
+      getRich();
+    }
+  </script>
+</body>
+
+</html>
