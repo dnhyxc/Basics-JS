@@ -196,6 +196,52 @@ console.log(numFormat(b)); // "673,439.4542"
 
 1，处理文件上传文件与原有文件需要同时展示时，需要使用两个互不相干的数组进行展示，即上传文件分为一个数组，已有文件分为一个数组，将这两个数组同时展示在页面上，避免在操作增删改操作时相互影响。
 
+2，伪代码如下：
+
+```js
+<div className={classNames(styles.contentWrap, styles.faceWrap)}>
+  <div className={styles.uploadWrap} style={isShowFaceCreate ? { display: 'blocdisplay: 'none' }}>
+    <FaceUpload onChange={uploadSuccess} getAddRes={getAddRes} />
+  </div>
+  {
+    !loading ? faceDetialData.registeredFaceList && faceDetialData.registeredFaceList.map((i, index) => {
+      return (
+        <MFace
+          key={index as number}
+          width={145}
+          height={173}
+          url={i.url}
+          faceId={i.faceId}
+          data={{
+            i, index,
+          }}
+          delEntityFace={delEntityFace}
+          type="edit"
+        />
+      );
+    }) : ''
+  }
+  {
+    !loading ? uploadList.length > 0 && uploadList.map((i, index) => {
+      return (
+        <MFace
+          key={index as number}
+          width={145}
+          height={173}
+          url={i.url}
+          res={i.res}
+          data={{
+            i, index,
+          }}
+          type="edit"
+          delUploadData={delUploadData}
+        />
+      );
+    }) : ''
+  }
+</div>
+```
+
 ---
 
 ## 数组转对象的方式
