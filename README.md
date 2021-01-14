@@ -318,6 +318,8 @@ const res = copyTrans(arr, [{ key: 'name', value: 'myname' }, { key: 'key', valu
 console.log(res);
 ```
 
+---
+
 ## 时间转换
 
 ### 将时长转成 时:分:秒
@@ -401,6 +403,8 @@ function getTime(time = +new Date()) {
 const time1 = getTime();
 console.log(time1); // 2021.01.12 14:18:55
 ```
+
+---
 
 ## 正则表达式
 
