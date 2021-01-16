@@ -190,6 +190,22 @@ console.log(numFormat(b)); // "673,439.4542"
 
 ---
 
+## JS 计算行数
+
+### 计算元素是否达到三行
+
+1，使用`元素的高度` **/** `元素的行高`即为文本行数：
+
+```js
+const box = document.getElementById('box');
+const height = box.offsetHeight;
+const lineHeight = box.style.lineHeight.slice(0, box.style.lineHeight.length - 2);
+const rowMun = Math.round(height / parseFloat(lineHeight));
+console.log(rowMun);  // 3
+```
+
+---
+
 ## Array.map() 实现页面展示数组数据
 
 ### 上传文件与列表已有文件同时展示
