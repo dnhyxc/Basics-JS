@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scrollbar</title>
+</head>
+
+<body>
+  <script>
+    let currentVal = 0;
+    let scrollVal = 0;
+    document.body.onscroll = () => {
+      // 每滚动一次，就会重新赋值
+      currentVal = scrollVal;
+      scrollVal = document.body.scrollTop;
+      if (currentVal < scrollVal) {
+        //滚动条下滑，实现下滑效果
+        console.log('下滑');
+      } else {
+        //滚动条上滑，实现上滑效果
+        console.log('上滑');
+      }
+    };
+  </script>
+</body>
+
+</html>
