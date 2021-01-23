@@ -5,24 +5,82 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>scrollbar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    body :first-child {
+      margin-right: 50px;
+    }
+
+    .parent {
+      box-sizing: border-box;
+      height: 100%;
+      width: 500px;
+      background-color: #ccc;
+      padding: 10px 10px;
+      overflow: auto;
+    }
+
+    .child {
+      width: 100%;
+      height: 1200px;
+      background-color: rgb(184, 247, 164);
+    }
+  </style>
 </head>
 
 <body>
+  <div class="parent" id="scroll">
+    <div class="child">监听滚动条向上滚动还是向下滚动</div>
+  </div>
+  <div class="parent" id="scroll1">
+    <div class="child">监听滚动是否停止</div>
+  </div>
   <script>
+    const scroll = document.getElementById('scroll');
     let currentVal = 0;
     let scrollVal = 0;
-    document.body.onscroll = () => {
-      // 每滚动一次，就会重新赋值
+    // 监听滚动条向上滚动还是向下滚动
+    scroll.onscroll = function () {
+      // 每滚动一次，就会重新赋值                                              
       currentVal = scrollVal;
-      scrollVal = document.body.scrollTop;
+      scrollVal = scroll.scrollTop;
       if (currentVal < scrollVal) {
         //滚动条下滑，实现下滑效果
-        console.log('下滑');
+        console.log('向下滚动');
       } else {
         //滚动条上滑，实现上滑效果
-        console.log('上滑');
+        console.log('向上滚动');
       }
-    };
+    }
+
+
+    // 监听滚动条滚动是否停止
+    let scrollTop1 = 0;
+    let scrollTop2 = 0;
+    let timer = null;
+    const scroll1 = document.getElementById('scroll1');
+    scroll1.onscroll = function () {
+      clearTimeout(timer);
+      scrollTop1 = scroll1.scrollTop;
+      setTimeout(() => {
+        scrollTop2 = scroll1.scrollTop;
+        if (scrollTop1 === scrollTop2) {
+          console.log('滚动停止了')
+        }
+      }, 500);
+    }
   </script>
 </body>
 
