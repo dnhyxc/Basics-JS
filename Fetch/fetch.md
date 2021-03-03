@@ -1,6 +1,6 @@
-## Fetch API
+### Fetch API
 
-### text()
+#### text()
 
 1，该方法用于读取 Response 对象并且将它设置为已读（因为 Responses 对象被设置为了 stream 的方式，所以它们只能被读取一次），并返回一个被解析为 USVString 格式的 Promise 对象。
 

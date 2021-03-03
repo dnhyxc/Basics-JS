@@ -1,6 +1,6 @@
-## JS API
+### JS API
 
-### outerHTML
+#### outerHTML
 
 1，使用 outerHTML 获取指定元素中的所有子元素及文本元素。
 
@@ -45,7 +45,7 @@ div.parentNode.replaceChild(p, div);
 
 > 上述代码中，将会使用 span 标签整体替换原来的 div 标签。
 
-### encodeURIComponent()
+#### encodeURIComponent()
 
 1，该方法可以把字符串作为 URI 组件进行编码。
 
@@ -61,15 +61,15 @@ console.log(res); // http%3A%2F%2Fwww.baidu.com
 
 ---
 
-## 构造函数相关
+### 构造函数相关
 
-### 构造函数 this
+#### 构造函数 this
 
 1，构造函数中，this 总是指向新创建出来的实例对象。
 
 2，如果在严格模式下，this 则指向 undefined。
 
-### new 关键字
+#### new 关键字
 
 1，构造函数于普通函数的区别就是，构造函数需要使用 new 关键字进行调用。
 
@@ -99,9 +99,9 @@ obj.name = 'dnhyxc';
 
 ---
 
-## JS 实现千位分隔符
+### JS 实现千位分隔符
 
-### 实现方式一
+#### 实现方式一
 
 1，首先将数字转为字符串数组，在循环整个数组，每三位添加一个分隔逗号，最后再合并成字符串。
 
@@ -140,7 +140,7 @@ console.log(numFormat(a)); // "1,234,567,894,532"
 console.log(numFormat(b)); // "673,439.4542"
 ```
 
-### 实现方式二
+#### 实现方式二
 
 1，使用 JS 自带的 API `toLocaleString()`。
 
@@ -166,7 +166,7 @@ console.log(a.toLocaleString()); // "1,234,567,894,532"
 console.log(b.toLocaleString()); // "673,439.454"  （小数部分四舍五入了）
 ```
 
-### 实现方式三
+#### 实现方式三
 
 1，使用 `RegExp 和 replace()` 方法。
 
@@ -190,9 +190,9 @@ console.log(numFormat(b)); // "673,439.4542"
 
 ---
 
-## JS 计算行数
+### JS 计算行数
 
-### 计算元素是否达到三行
+#### 计算元素是否达到三行
 
 1，使用`元素的高度` **/** `元素的行高`即为文本行数：
 
@@ -206,9 +206,9 @@ console.log(rowMun);  // 3
 
 ---
 
-## Array.map() 实现页面展示数组数据
+### Array.map() 实现页面展示数组数据
 
-### 上传文件与列表已有文件同时展示
+#### 上传文件与列表已有文件同时展示
 
 1，处理文件上传文件与原有文件需要同时展示时，需要使用两个互不相干的数组进行展示，即上传文件分为一个数组，已有文件分为一个数组，将这两个数组同时展示在页面上，避免在操作增删改操作时相互影响。
 
@@ -260,9 +260,9 @@ console.log(rowMun);  // 3
 
 ---
 
-## 数组转对象的方式
+### 数组转对象的方式
 
-### 方式一
+#### 方式一
 
 1，`对象结构`：
 
@@ -285,7 +285,7 @@ for(let k in arr) {
 }
 ```
 
-### 方式三
+#### 方式三
 
 1，`Object.assign()`：
 
@@ -295,7 +295,7 @@ const arr = ['arr1', 'arr2', 'arr3'];
 Object.assign({}, arr);
 ```
 
-### 方式四
+#### 方式四
 
 1，`Array.reduce()`：
 
@@ -308,9 +308,9 @@ arr.reduce((obj, arr, index) => {
 
 ---
 
-## 改变对象属性名的方式
+### 改变对象属性名的方式
 
-### JSON.parse() && JSON.stringify()
+#### JSON.parse() && JSON.stringify()
 
 1，缺点：如果属性值匹配到也会被更改，而且属性名中有部分匹配到也会被更改。
 
@@ -329,7 +329,7 @@ var bbb = JSON.parse(JSON.stringify(aaa).replace(/Name/g, "title"));
 console.log(bbb);
 ```
 
-### 使用递归遍历
+#### 使用递归遍历
 
 1，使用递归遍历对数组中每一个对象的属性名进行更改。
 
@@ -382,9 +382,9 @@ console.log(res);
 
 ---
 
-## 时间转换
+### 时间转换
 
-### 将时长转成 时:分:秒
+#### 将时长转成 时:分:秒
 
 ```js
 const timeToMinute = (time) => {
@@ -411,7 +411,7 @@ const res = timeToMinute(320);
 console.log(res);
 ```
 
-### 将时间转成 天/时/分/秒
+#### 将时间转成 天/时/分/秒
 
 ```js
 function secondsFormat(s) {
@@ -425,7 +425,7 @@ console.log(secondsFormat(5555555)) // 64天7时12分35秒
 console.log(secondsFormat(1234))  // 0天0时20分34秒
 ```
 
-### 将时间转成 年/月/日 时:分:秒
+#### 将时间转成 年/月/日 时:分:秒
 
 ```js
 function getHMS(timestamp) {
@@ -444,7 +444,7 @@ const HMS = getHMS(Date.now());
 console.log(HMS); // 2021/01/12 14:06:25
 ```
 
-### 时间戳转成 YYYY-MM-DD hh:mm:ss 新思路
+#### 时间戳转成 YYYY-MM-DD hh:mm:ss 新思路
 
 1，Date 的 'toJSON' 方法返回格林威治时间的 JSON 格式字符串，实际是使用 'toISOString' 方法的结果。字符串形如'2018-08-09T10:20:54.396Z'，转化为北京时间需要额外增加八个时区，我们需要取字符串前 19 位，然后把 'T' 替换为空格，即是我们需要的时间格式。
 
@@ -468,9 +468,9 @@ console.log(time1); // 2021.01.12 14:18:55
 
 ---
 
-## 正则表达式
+### 正则表达式
 
-### 正则表达式中的特殊字符
+#### 正则表达式中的特殊字符
 
 1，`\`：表示转义符。
 

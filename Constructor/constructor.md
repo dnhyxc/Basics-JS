@@ -1,12 +1,12 @@
-## constructor
+### constructor
 
-### 构造函数 this
+#### 构造函数 this
 
 1，构造函数中，this 总是指向新创建出来的实例对象。
 
 2，如果在严格模式下，this 则指向 undefined。
 
-### new 关键字
+#### new 关键字
 
 1，构造函数于普通函数的区别就是，构造函数需要使用 new 关键字进行调用。
 
@@ -21,9 +21,9 @@ const obj = new Object();
 <2>，将构造函数中的 this 指向新创建的这个实例对象。
 
 ```js
-this.name = 'dnhyxc';
+this.name = "dnhyxc";
 // 相当于（obj是new Object()创建的对象）
-obj.name = 'dnhyxc';
+obj.name = "dnhyxc";
 ```
 
 <3>，自上而下执行构造函数中的代码。
