@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Touch</title>
+</head>
+
+<body>
+  <div>
+    移动端滑动，pc端无效
+  </div>
+  <script>
+    /**
+     * Math.atan2():返回从原点(0,0)到(x,y)点的线段与x轴正方向之间的平面角度(弧度值)，也就是Math.atan2(y,x)
+     * Math.abs(x):返回指定数字 "x" 的绝对值
+     */
+    let startx, starty;
+    //获得角度
+    function getAngle(angx, angy) {
+      return (Math.atan2(angy, angx) * 180) / Math.PI;
+    }
+
+    //根据起点终点返回方向 1向上 2向下 3向左 4向右 0未滑动
+    function getDirection(startx, starty, endx, endy) {
+      let angx = endx - startx;
+      let angy = endy - starty;
+      let result = 0;
+
+      //如果滑动距离太短
+      if (Math.abs(angx) < 2 && Math.abs(angy) < 2) {
+        return result;
+      }
+
+      let angle = getAngle(angx, angy);
+      if (angle >= -135 && angle <= -45) {
+        result = 1;
+      } else if (angle > 45 && angle < 135) {
+        result = 2;
+      } else if (
+        (angle >= 135 && angle <= 180) ||
+        (angle >= -180 && angle < -135)
+      ) {
+        result = 3;
+      } else if (angle >= -45 && angle <= 45) {
+        result = 4;
+      }
+      return result;
+    }
+    //手指接触屏幕
+    document.addEventListener("touchstart", function (e) {
+      startx = e.touches[0].pageX;
+      starty = e.touches[0].pageY;
+    }, false);
+    //手指离开屏幕
+    document.addEventListener("touchend", function (e) {
+      let endx, endy;
+      endx = e.changedTouches[0].pageX;
+      endy = e.changedTouches[0].pageY;
+      let direction = getDirection(startx, starty, endx, endy);
+      switch (direction) {
+        case 1:
+          console.log("向上滑动");
+          break;
+        case 2:
+          console.log("向下滑动");
+          break;
+        case 3:
+          console.log("向左滑动");
+          break;
+        case 4:
+          console.log("向右滑动");
+          break;
+        default:
+          console.log("暂未滑动");
+          break;
+      }
+    }, false);
+  </script>
+</body>
+
+</html>
