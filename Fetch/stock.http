@@ -1,0 +1,6 @@
+POST http://kungfu.jiahaolong.com:8090/region/get?uid=1008753684&token=IjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBC HTTP/1.1
+content-type: raw
+
+{
+  "pid":0,
+}
