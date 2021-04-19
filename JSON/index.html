@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>判断是否是JSON</title>
+</head>
+
+<body>
+  <script>
+    function isJSON(str) {
+      if (typeof str === 'string') {
+        try {
+          var obj = JSON.parse(str);
+          if (typeof obj === 'object' && obj) {
+            return true;
+          } else {
+            return false;
+          }
+
+        } catch (e) {
+          return false;
+        }
+      }
+    }
+    console.log('123 is json? ' + isJSON('123')) //  false
+    console.log('{} is json? ' + isJSON('{}')) // true
+    console.log('true is json? ' + isJSON('true')) // false 
+    console.log('foo is json? ' + isJSON('"foo"')) // false
+    console.log('[1, 5, "false"] is json? ' + isJSON('[1, 5, "false"]')) // true
+    console.log('null is json? ' + isJSON('null')) // false
+    console.log('["1{211323}","2"] is json? ' + isJSON('["1{211323}","2"]')) // true
+    console.log('[{},"2"] is json? ' + isJSON('[{},"2"]')) // true
+    console.log('[[{},{"2":"3"}],"2"] is json? ' + isJSON('[[{},{"2":"3"}],"2"]')) // true
+  </script>
+</body>
+
+</html>
