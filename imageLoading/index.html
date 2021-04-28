@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>image loading</title>
+  <style>
+    .wrap {
+      width: 400px;
+      height: 225px;
+      border: 1px solid red;
+      text-align: center;
+      line-height: 225px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <span>loading...</span>
+  </div>
+  <script>
+    const wrap = document.querySelector('.wrap');
+    const myImage = document.createElement('img');
+    const p = document.createElement('p');
+
+    const img = new window.Image();
+
+    img.onload = function () {
+      loading = false;
+    };
+
+    img.onerror = function () {
+      alert("error!")
+    };
+
+    img.src = "https://s.newscdn.cn/file/2020/07/1413858a-b2fb-4351-a715-6496b980771b.gif";
+
+    window.onload = function () {
+      myImage.src = img.src;
+      wrap.innerHTML = '';
+      wrap.appendChild(myImage);
+    }
+  </script>
+</body>
+
+</html>

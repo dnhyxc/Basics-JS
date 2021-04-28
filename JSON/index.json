@@ -1,0 +1,28 @@
+{
+  "templateVariables": {
+    "title": "原始[转GIF]"
+  },
+  "messageVariables": {
+    "typeDesc": "视频服务",
+    "type": "VIDEO",
+    "flowStatus": "finish",
+    "flowStatusDesc": "执行完成",
+    "flowStatusColor": "#52C41A"
+  },
+  "templates": [
+    {
+      "id": 5,
+      "templateId": "1379266757028286466",
+      "templateGroupId": "1379266757028286466",
+      "templateType": "system",
+      "bizId": "mediax-busi-platform",
+      "bizType": "mediaOperation",
+      "language": "chinese",
+      "templateTitle": "媒资操作消息",
+      "templateBody": "{\"content\":\"${title}\"}",
+      "gmtCreate": "Apr 6, 2021 10:56:35 AM",
+      "gmtModified": "Apr 6, 2021 5:27:45 PM",
+      "deleted": false
+    }
+  ]
+}
